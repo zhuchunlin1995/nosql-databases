@@ -42,9 +42,4 @@ article_switch_vote(redis, "user:2", "article:8", "article:1")
 article = redis.zrangebyscore('score:', 10, 20)
 article_id = article[0].split(':')[-1]
 print(redis.hget("article:" +  article_id, "link"))
-# Which article's score is between 10 and 20?
-# PRINT THE ARTICLE'S LINK TO STDOUT:
-# HOMEWORK 2 Part II
-# article = redis.?
-# print redis.?
 
