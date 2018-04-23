@@ -1,0 +1,85 @@
+I'm modeling Game of Throne
+
+
+
+## 8 commands to create each node with their labels and property pairs
+
+create(Eddard:Stark {name:'Eddard Stark'}),(Catelyn:Stark {name:'Catelyn Tully'}),(Arya:Stark {name:'Arya Stark'}),(Bran:Stark {name:'Bran Stark'}),(Sansa:Stark {name:'Sansa Stark'}),(Nymeria:Stark {name:'Nymeria'}),(Summer:Stark {name:'Summer'}),(Lady:Stark {name:'Lady'});
+
+==============================================================================================================================================================================================================================================
+
+## 12 commands to create the relationships, 5 of which must include the property pair (the graph "edges")
+
+match (a:Stark),(b:Stark)
+       where a.name = 'Eddard Stark' and b.name = 'Catelyn Tully'
+       create (a)-[r: "REALTYPE" {name: 'husband_of'}]->(b)
+       create (b)-[r2: "REALTYPE"{name: 'wife_of'}]->(a);
+
+
+match (a:Stark),(b:Stark)
+       where a.name = 'Eddard Stark' and b.name = 'Arya Stark'
+       create (a)-[r: "REALTYPE" {name: 'father_of'}]->(b)
+       create (b)-[r2: "REALTYPE" {name: 'daughter_of'}]->(a);
+
+match (a:Stark),(b:Stark)
+       where a.name = 'Sansa Stark' and b.name = 'Arya Stark'
+       create (a)-[r: "REALTYPE" {name: 'sister_of'}]->(b)
+       create (b)-[r2: "REALTYPE" {name: 'sister_of'}]->(a);
+
+
+match (a:Stark),(b:Stark)
+       where a.name = 'Eddard Stark' and b.name = 'Sansa Stark'
+       create (a)-[r: "REALTYPE" {name: 'father_of'}]->(b)
+       create (b)-[r2: "REALTYPE" {name: 'daughter_of'}]->(a);
+
+match (a:Stark),(b:Stark)
+       where a.name = 'Arya Stark' and b.name = 'Nymeria'
+       create (a)-[r: "REALTYPE" {name: 'owner_of'}]->(b)
+       create (b)-[r2: "REALTYPE" {name: 'pet_of'}]->(a);
+
+
+match (a:Stark),(b:Stark)
+       where a.name = 'Sansa Stark' and b.name = 'Catelyn Tully'
+       create (a)-[r: "REALTYPE" {name: 'daughter_of'}]->(b)
+       create (b)-[r2: "REALTYPE" {name: 'motherr_of'}]->(a);
+
+==============================================================================================================================================================================================================================================
+
+## 2 commands to query for a subgraph. Return one property from each node returned from the query and the name of the relationship between the nodes.
+
+match (N:Stark{name:'Nymeria'}),(others)
+match (N)-[r]->(others)
+return others.name, r.name;
+
+
++---------------------------+
+| others.name  | r.name     |
++---------------------------+
+| "Arya Stark" | owner_of   |
++---------------------------+
+
+
+
+MATCH (Sansa{ name: 'Sansa Stark' }),(others)
+MATCH (Sansa)<-[r]-(others)
+RETURN others.name, r.name;
+
+
++-------------------------------+
+| others.name     | r.name      |
++-------------------------------+
+| "Catelyn Tully" | mother_of   |
+| "Eddard Stark"  | father_of   |
+| "Arya Stark"    | sister_of   |
++-------------------------------+
+
+
+
+
+
+
+
+
+
+
+
