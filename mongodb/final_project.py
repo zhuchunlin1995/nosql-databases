@@ -65,7 +65,7 @@ for doc in cursor:
 	pic_name = (doc['name'])
 
 # Action 7: <A user wants to see how many likes he gets in total>
-photos.aggregate({$group: { 'user_email': 'test1@gmail.com', 'totalSize': { '$sum': { '$size': '$likes'}} }})
+photos.aggregate({'$group': { 'user_email': 'test1@gmail.com', 'totalSize': { '$sum': { '$size': '$likes'}} }})
 
 
 # Action 8: <A user wants to change its email address>
