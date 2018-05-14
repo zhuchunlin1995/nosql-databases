@@ -26,9 +26,10 @@ users.insert([
 		'email': 'test3@gmail.com',
 	  	'name': 'Jack Ma',
 	 	'password': '123456',
-	  	'follows':[{'name': 'Chunyang Zhu', 'email': 'test2@gmail.com'}, {'name': 'Chunlin Zhu', 'email': 'test1@gmail.com'}]
-	  	'follower':[{'name': 'Chunlin Zhu', 'email': 'test1@gmail.com'}, {'name': 'Jack Ma', 'email': 'test3@gmail.com'}]
+	  	'follows':[{'name': 'Chunyang Zhu', 'email': 'test2@gmail.com'}, {'name': 'Chunlin Zhu','email': 'test1@gmail.com'}],
+	  	'follower':[{'name': 'Chunlin Zhu', 'email': 'test1@gmail.com'}, {'name': 'Chunyang Zhu', 'email': 'test2@gmail.com'}]
 	}]
+	)
 
 # I use subdocument to represent the comments and likes object in my schema.
 photos.insert([
